@@ -12,3 +12,4 @@ Create a REST API using TypeScript and Express.js with CRUD operations on a /wid
 
 
 <!-- add docs on how to use api -->
+<!-- middleware to log -->
