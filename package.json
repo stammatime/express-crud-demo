@@ -9,7 +9,7 @@
     "prestart": "npm run build",
     "start": "node .",
     "dev": "nodemon .",
-    "test": "jest",
+    "test": "jest src",
     "test:watch": "jest --watch"
   },
   "repository": {
