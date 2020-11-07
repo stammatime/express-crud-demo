@@ -24,4 +24,9 @@ describe('Endpoint', () => {
  
     expect(request).toBeCalled();
   });
+
+  // Test that Get will work if JWT allows on canGet
+  // Test that Get will return unauth if canGet = false
+  // Test that we get all results as expected when req is correct
+  // Test that we give informative message when body is incorrect (not implemented)
 });
