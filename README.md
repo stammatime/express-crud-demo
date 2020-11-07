@@ -11,5 +11,9 @@ X An instance of custom express middleware
 - Authorization controls on accessing endpoints
 - Unit/Func tests
 
+# Useful info
 
-<!-- add docs on how to use api if time -->
+JWT sent in Authorization header, secret is `secretCode`
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYW5HZXQiOnRydWUsImNhblBvc3QiOnRydWUsImNhblB1dCI6dHJ1ZSwiY2FuRGVsZXRlIjpmYWxzZSwiaWF0IjoxNTE2MjM5MDIyfQ.GzQDgpIOrRT7ET1gnHNNWxFsJv2JfQ0IRTDnBgV2Akk
+```
