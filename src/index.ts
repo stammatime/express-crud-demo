@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import jwt from 'express-jwt';
 
@@ -22,11 +22,9 @@ const port = 3000;
 app.use(bodyParser.json());
 
 // simple log middleware
-const myLogger = (req: any, res: any, next: any) => {
+const myLogger = (req: Request, res: Response, next: NextFunction) => {
     // tslint:disable-next-line: no-console
     console.log(req.body);
-    // tslint:disable-next-line: no-console
-    console.log(req.user);
     next();
 }
 
@@ -35,13 +33,17 @@ app.use(myLogger);
 const items: Map<number, string> = new Map();
 let id: number = 3;
 
-items.set(1, "initialData");
-items.set(2, "testData");
+items.set(1, "initialData1");
+items.set(2, "testData2");
+
+function AllItems() {
+    return Object.fromEntries(items);
+}
 
 // Get all items
 app.get( "/widget", jwt({ secret: 'secretCode', algorithms: ['HS256'] }), ( req, res ) => {
     if(req.user.canGet){
-        res.status(200).send(Object.fromEntries(items));
+        res.status(200).send(AllItems());
     }
 } );
 
