@@ -1,9 +1,19 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+
+// simple log middleware
+const myLogger = (req: any, res: any, next: any) => {
+    // tslint:disable-next-line: no-console
+    console.log(req.body);
+    next();
+}
+
+app.use(myLogger);
 
 const items: Map<number, string> = new Map();
 let id: number = 3;
@@ -13,7 +23,7 @@ items.set(2, "testData");
 
 // Get all items
 app.get( "/widget", ( req, res ) => {
-    res.status(200).send(items);
+    res.status(200).send(Object.fromEntries(items));
 } );
 
 // Add a new item
@@ -34,7 +44,7 @@ app.put("/widget/:itemId", ( req, res ) => {
 // delete an item
 app.delete( "/widget/:itemId", ( req, res ) => {
     items.delete(parseInt(req.params.itemId, 10));
-    res.send( "Delete from widget!" );
+    res.status(200).send(Object.fromEntries(items));
 } );
 
 // start the Express server
